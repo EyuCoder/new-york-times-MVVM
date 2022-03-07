@@ -8,6 +8,7 @@
 
 ### Made With
 - MVVM Architecture
+- Jetpack Compose (UI)
 - Coil (image loading library)
 - lifecycle components
 - Dagger Hilt
