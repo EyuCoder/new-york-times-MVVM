@@ -2,8 +2,8 @@ package com.codexo.nyt.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codexo.nyt.model.Article
-import com.codexo.nyt.repository.ArticleRepo
+import com.codexo.nyt.data.model.Article
+import com.codexo.nyt.data.ArticleRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

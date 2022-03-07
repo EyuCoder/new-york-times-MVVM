@@ -1,7 +1,6 @@
 package com.codexo.nyt.di
 
-import com.codexo.nyt.ArticleApi
-import com.codexo.nyt.util.Constants
+import com.codexo.nyt.data.ArticleApi
 import com.codexo.nyt.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module

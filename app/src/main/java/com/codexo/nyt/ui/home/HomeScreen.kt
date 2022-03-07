@@ -1,6 +1,5 @@
 package com.codexo.nyt.ui.home
 
-import android.content.Intent
 import android.net.Uri
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.animation.animateContentSize
@@ -24,18 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.material.Icon
-import androidx.compose.ui.platform.LocalContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
+import coil.size.Scale
 import com.codexo.nyt.R
-import com.codexo.nyt.model.Article
+import com.codexo.nyt.data.model.Article
 import com.codexo.nyt.ui.theme.NYTTheme
 
 @Composable
@@ -47,16 +45,15 @@ fun HomeScreen() {
         if (state.isEmpty()) {
             item {
                 CircularProgressIndicator(
+                    color = MaterialTheme.colors.secondary,
                     modifier = Modifier
                         .fillMaxSize()
                         .wrapContentSize(align = Alignment.Center)
                 )
             }
-
         }
 
         items(state) { article: Article ->
-
             Card(
                 backgroundColor = MaterialTheme.colors.primary,
                 modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
@@ -70,10 +67,11 @@ fun HomeScreen() {
 
 @Composable
 private fun CardContent(article: Article) {
-    val imagerPainter = rememberImagePainter(data = article.photoUrl){
+    val imagerPainter = rememberImagePainter(data = article.photoUrl) {
         crossfade(durationMillis = 1000)
         error(R.drawable.ic_placeholder)
         placeholder(R.drawable.ic_placeholder)
+        scale(Scale.FILL)
     }
     var expanded by remember { mutableStateOf(false) }
 
@@ -93,14 +91,14 @@ private fun CardContent(article: Article) {
             modifier = Modifier
                 .size(70.dp)
                 .clip(CircleShape)
-                .border(2.dp, Color.Gray, CircleShape)
-                .padding(4.dp),
+                .border(2.dp, Color.Gray, CircleShape),
             contentScale = ContentScale.FillBounds
         )
+        Spacer(modifier = Modifier.width(10.dp))
+
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(12.dp)
         ) {
             val context = LocalContext.current
             Text(
@@ -119,13 +117,15 @@ private fun CardContent(article: Article) {
                     val customTabsIntent = builder.build()
                     customTabsIntent.launchUrl(context, Uri.parse(article.url));
                 },
-                 maxLines = 1
+                maxLines = 1
             )
 
             Text(text = article.author ?: "hellur")
 
-            Row(modifier = Modifier
-                .padding(12.dp)) {
+            Row(
+                modifier = Modifier
+                    .padding(12.dp)
+            ) {
                 Icon(
                     imageVector = Icons.Filled.DateRange,
                     modifier = Modifier.size(20.dp),

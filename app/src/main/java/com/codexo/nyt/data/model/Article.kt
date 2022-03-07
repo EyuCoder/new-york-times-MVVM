@@ -1,4 +1,4 @@
-package com.codexo.nyt.model
+package com.codexo.nyt.data.model
 
 import kotlinx.serialization.Serializable
 

@@ -1,5 +1,5 @@
-package com.codexo.nyt
-import com.codexo.nyt.model.Results
+package com.codexo.nyt.data
+import com.codexo.nyt.data.model.Results
 import com.codexo.nyt.util.Constants
 import retrofit2.http.GET
 
