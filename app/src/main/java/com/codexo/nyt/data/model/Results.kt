@@ -36,7 +36,7 @@ data class Media(
 
 @Serializable
 data class MediaMetadata(
-    val url: String? = null
+    val url: String? = "https://images.ctfassets.net/440y9b545yd9/7jnBjgsgS8KFPqMZ9KW2lG/3ec550bbe9bbc1010b022c869b537074/cat-banner.png"
 )
 
 fun Results.asArticleModel(): List<Article> {
